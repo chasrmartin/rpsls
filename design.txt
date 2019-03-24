@@ -1,0 +1,36 @@
+int score(p1, p2) -> return -1 of p1 wins, 0 for a draw, +1 if player 2 wins
+// play
+int main()
+    print "starting to play"
+    for each game played "from the arguments"
+        fork referee
+    print "we're done"
+    exit
+    
+// referee
+int main()
+    creates the server side socket as server_fd
+    forks player1 and player2
+    wait for a connection
+    sends go
+    gets a messsage like "player x plays y"
+    save the message into msg1
+    send stop to the first process
+    get another connections
+    sends go
+    gets a messsage like "player x plays y"
+    save the message into msg2
+    stop player2
+    if msg1 player == msg2 player
+       vomit
+    score the play
+    print who won or a draw
+    exit
+    
+// player
+int main()
+    connects to the server
+    waits for the go message
+    sends the choice
+    waits for the stop message
+    exit
